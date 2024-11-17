@@ -15,7 +15,7 @@ public class ArticleAdapter extends BaseAdapter {
     private ArrayList<Article> article_list;
     private Context context;
 
-    // Constructor to initialize article list and context
+    // Constructor để khởi tạo danh sách bài viết và context
     public ArticleAdapter(ArrayList<Article> article_list, Context context) {
         this.article_list = article_list;
         this.context = context;
@@ -33,18 +33,18 @@ public class ArticleAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return article_list.get(position).getArticle_id();
+        return article_list.get(position).getArticle_id(); // Trả về ID của bài viết
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         final MyView dataItem;
 
-        // Layout inflater to inflate the list item layout
+        // Layout inflater để lấy layout của item
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if (convertView == null) {
-            // Inflate the item layout
+            // Inflate layout item
             dataItem = new MyView();
             convertView = inflater.inflate(R.layout.article_disp_tpl, null);
             dataItem.iv_photo = convertView.findViewById(R.id.iv_photo);
@@ -54,14 +54,14 @@ public class ArticleAdapter extends BaseAdapter {
             dataItem = (MyView) convertView.getTag();
         }
 
-        // Load image using Picasso
+        // Load ảnh bằng Picasso
         Picasso.get()
                 .load(article_list.get(position).getArticle_image())
                 .resize(300, 400)
                 .centerCrop()
                 .into(dataItem.iv_photo);
 
-        // Set text for the caption
+        // Đặt văn bản cho tiêu đề
         dataItem.tv_caption.setText(article_list.get(position).getArticle_title());
 
         return convertView;
